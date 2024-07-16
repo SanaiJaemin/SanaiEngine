@@ -11,6 +11,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Editor_Window.h" />
+    <ClInclude Include="Commonlnclude.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Editor_Window.rc">
@@ -27,5 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Commonlnclude.cpp" />
   </ItemGroup>
 </Project>

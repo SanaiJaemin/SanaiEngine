@@ -5,27 +5,63 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_Window", "Editor_Window\Editor_Window.vcxproj", "{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JaeminEngine_Window", "JaeminEngine_Window\JaeminEngine_Window.vcxproj", "{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JaeminEngine_SOURCE", "JaeminEngine_SOURCE\JaeminEngine_SOURCE.vcxitems", "{88D68DAD-568C-47C7-AAB4-665FB2C5BC1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Debug|ARM.ActiveCfg = Debug|x64
+		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Debug|ARM.Build.0 = Debug|x64
+		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Debug|ARM64.ActiveCfg = Debug|x64
+		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Debug|ARM64.Build.0 = Debug|x64
 		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Debug|x64.ActiveCfg = Debug|x64
 		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Debug|x64.Build.0 = Debug|x64
 		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Debug|x86.ActiveCfg = Debug|Win32
 		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Debug|x86.Build.0 = Debug|Win32
+		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Release|ARM.ActiveCfg = Release|x64
+		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Release|ARM.Build.0 = Release|x64
+		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Release|ARM64.ActiveCfg = Release|x64
+		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Release|ARM64.Build.0 = Release|x64
 		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Release|x64.ActiveCfg = Release|x64
 		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Release|x64.Build.0 = Release|x64
 		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Release|x86.ActiveCfg = Release|Win32
 		{C23D63C5-F349-48F2-9459-9B9B5FD0E2D0}.Release|x86.Build.0 = Release|Win32
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Debug|ARM.ActiveCfg = Debug|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Debug|ARM.Build.0 = Debug|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Debug|ARM64.ActiveCfg = Debug|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Debug|ARM64.Build.0 = Debug|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Debug|x64.ActiveCfg = Debug|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Debug|x64.Build.0 = Debug|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Debug|x86.ActiveCfg = Debug|Win32
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Debug|x86.Build.0 = Debug|Win32
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Release|ARM.ActiveCfg = Release|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Release|ARM.Build.0 = Release|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Release|ARM64.ActiveCfg = Release|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Release|ARM64.Build.0 = Release|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Release|x64.ActiveCfg = Release|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Release|x64.Build.0 = Release|x64
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Release|x86.ActiveCfg = Release|Win32
+		{51EE8070-9657-48DE-A78C-ED9A34E1DD3A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B699D329-2333-43BC-9AEB-0A18C1147175}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		JaeminEngine_SOURCE\JaeminEngine_SOURCE.vcxitems*{51ee8070-9657-48de-a78c-ed9a34e1dd3a}*SharedItemsImports = 4
+		JaeminEngine_SOURCE\JaeminEngine_SOURCE.vcxitems*{88d68dad-568c-47c7-aab4-665fb2c5bc1d}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal

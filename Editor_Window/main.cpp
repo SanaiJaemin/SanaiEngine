@@ -1,8 +1,14 @@
 ﻿// Editor_Window.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
-
+#include "Commonlnclude.h"
 #include "framework.h"
 #include "Editor_Window.h"
+#include "..\\JaeminEngine_SOURCE\JApplication.h"
+
+#pragma comment (lib,"..\\x64\\Debug\\JaeminEngine_Window.lib")
+
+
+Application app;
 
 #define MAX_LOADSTRING 100
 
@@ -17,8 +23,8 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 핸들
+                     _In_opt_ HINSTANCE hPrevInstance, // 앞전에 핸들, 없을경우 NULL 
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
@@ -26,6 +32,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 여기에 코드를 입력합니다.
+    app.test();
+
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -42,15 +50,43 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    // GetMessage(&msg,nullptr,0,0)
+    // 프로세스에서 발생한 메세지를 메세지 큐에서 가져오는 함수
+    // 메세지큐에 아무것도 없다면 ??? 아무 메세지도 가져오지 않게된다.
+
+    // PeekMessage : 메세지큐에 메세지 유무에 상관없이 함수가 리턴된다.
+    //               리턴값이 true인 경우 메세지가 있고 false인경우는 메세지가 없다라고 가르켜준다.
+
+    while (true)
+    {
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+        {
+            if (msg.message == WM_QUIT) // 종료메세지면 가장 가까운 메세지 종료
+                break;
+
+            if(!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) // 메세지가 있으면 실행
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        }
+        else // 메세지 없을경우 게임 로직 실행
+        {
+
+        }
+    }
+
+
+
+    // 기본 메시지 루프입니다,로직문
+    /*while (GetMessage(&msg, nullptr, 0, 0))
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
-    }
+    }*/
 
     return (int) msg.wParam;
 }
@@ -98,7 +134,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -132,7 +168,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             switch (wmId)
             {
             case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About); 
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
@@ -146,7 +182,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
+            
+            
+            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255)); // 파랑 생성
+            
+            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
+
+            Rectangle(hdc, 100, 100, 200, 200);
+            (HBRUSH)SelectObject(hdc, oldBrush);
+            DeleteObject(brush);
+            Ellipse(hdc, 200, 200, 300, 300);
+
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+
+            // DC란 화면에 출력에 필요한 모든 정보를 가지는 데이터 구조체이며
+            // GDU모듈에 의해서 관리된다
+            // 어떤 폰트를 사용할건가?, 어떤 선의 굴기를 정해줄건가 어떤 색상으로 그려줄껀가
+            // 화면 출력에 필요한 모든 경우는 WINAPI에서는 DC를 통해서 작업을 진행할 수 있다.
+            //
+            //
             EndPaint(hWnd, &ps);
         }
         break;
