@@ -1,17 +1,12 @@
 ﻿// Editor_Window.cpp : 애플리케이션에 대한 진입점을 정의합니다.
-//
-#include "Commonlnclude.h"
+
 #include "framework.h"
 #include "Editor_Window.h"
 #include "..\\JaeminEngine_SOURCE\JApplication.h"
 
-#pragma comment (lib,"..\\x64\\Debug\\JaeminEngine_Window.lib")
-
-
-Application app;
-
 #define MAX_LOADSTRING 100
 
+Ja::Application application;
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
@@ -32,7 +27,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 여기에 코드를 입력합니다.
-    app.test();
 
 
     // 전역 문자열을 초기화합니다.
@@ -72,7 +66,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
         }
         else // 메세지 없을경우 게임 로직 실행
         {
-
+            application.Run();
         }
     }
 
@@ -133,8 +127,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
+   const UINT width = 1600;
+   const UINT height = 900;
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
+
+   application.Intialize(hWnd, width, height);
 
    if (!hWnd)
    {
@@ -181,26 +179,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
+            
             HDC hdc = BeginPaint(hWnd, &ps);
             
             
-            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255)); // 파랑 생성
             
-            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
-
-            Rectangle(hdc, 100, 100, 200, 200);
-            (HBRUSH)SelectObject(hdc, oldBrush);
-            DeleteObject(brush);
-            Ellipse(hdc, 200, 200, 300, 300);
-
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-
-            // DC란 화면에 출력에 필요한 모든 정보를 가지는 데이터 구조체이며
-            // GDU모듈에 의해서 관리된다
-            // 어떤 폰트를 사용할건가?, 어떤 선의 굴기를 정해줄건가 어떤 색상으로 그려줄껀가
-            // 화면 출력에 필요한 모든 경우는 WINAPI에서는 DC를 통해서 작업을 진행할 수 있다.
-            //
-            //
+            
             EndPaint(hWnd, &ps);
         }
         break;
